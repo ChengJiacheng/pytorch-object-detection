@@ -3,10 +3,19 @@ import numpy as np
 import torch
 from PIL import Image
 
+# test
+root = 'PennFudanPed'
+imgs = list(sorted(os.listdir(os.path.join(root, "PNGImages"))))
+masks = list(sorted(os.listdir(os.path.join(root, "PedMasks"))))
+idx = 1
+image = Image.open(os.path.join('PennFudanPed', "PNGImages", imgs[idx]))
+mask = Image.open(os.path.join('PennFudanPed', "PedMasks", masks[idx]))
+# mask 是一个单通道图像，0代表background，1,2,3代表不同的object，一共有np.max(mask)个objects
 
 class PennFudanDataset(object):
     def __init__(self, root, transforms):
         self.root = root
+        # root = 'PennFudanPed'
         self.transforms = transforms
         # load all image files, sorting them to
         # ensure that they are aligned
